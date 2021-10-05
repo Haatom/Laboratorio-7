@@ -101,13 +101,17 @@ public class JDBCExample {
      * @param codigoPedido el código del pedido
      * @return 
      */
-    public static List<String> nombresProductosPedido(Connection con, int codigoPedido){
+    public static List<String> nombresProductosPedido(Connection con, int codigoPedido) throws SQLException{
         List<String> np=new LinkedList<>();
         
         //Crear prepared statement
         PreparedStatement productosPedido;
         //asignar parámetros
-        String select = "SELECT Pr.nombre " + "FROM ORD_PRODUCTOS AS Pr " + "INNER JOIN ORD_DETALLE_PEDIDO AS Dp " + "ON Dp.producto_fk = Pr.codigo " + "WHERE Dp.pedido_fk = ? ;";
+        String select = "SELECT Pr.nombre " 
+                + "FROM ORD_PRODUCTOS AS Pr " 
+                + "INNER JOIN ORD_DETALLE_PEDIDO AS Dp " 
+                + "ON Dp.producto_fk = Pr.codigo " 
+                + "WHERE Dp.pedido_fk = ? ;";
         
                         
                         
@@ -132,7 +136,7 @@ public class JDBCExample {
      * @param codigoPedido código del pedido cuyo total se calculará
      * @return el costo total del pedido (suma de: cantidades*precios)
      */
-    public static int valorTotalPedido(Connection con, int codigoPedido){
+    public static int valorTotalPedido(Connection con, int codigoPedido) throws SQLException{
         int  valorTotal =0;
         //Crear prepared statement
         PreparedStatement costo = null;
